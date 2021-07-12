@@ -1,0 +1,84 @@
+<div class="inscription-form">
+  <h1>Inscription</h1>
+  <form (ngSubmit)="myForm.valid && submitUser()" #myForm="ngForm">
+    <div class="inscription-form-name">
+      <label for="firstname">Name:</label>
+      <input
+        id="firstname"
+        name="firstname"
+        type="text"
+        [(ngModel)]="model.firstname"
+        #firstname="ngModel"
+        required
+        minlength="3"
+        maxlength="15"
+      />
+    </div>
+
+    <!--Message d'erreurs-->
+    <div *ngIf="firstname.errors">
+      <span *ngIf="firstname.errors?.required">Votre prénom est requis !</span>
+      <span *ngIf="firstname.errors?.minlength"
+        >La longueur minimale doit être supérieure à 3</span
+      >
+      <span *ngIf="firstname.errors?.maxlength"
+        >La longueur maximale doit être inférieure à 15</span
+      >
+    </div>
+    <div class="inscription-form-lastname">
+      <label for="lastname">Lastname:</label>
+      <input
+        name="lastname"
+        type="text"
+        [(ngModel)]="model.lastname"
+        #lastname="ngModel"
+        required
+        minlength="3"
+        maxlength="15"
+      />
+    </div>
+    <!--Message d'erreurs-->
+    <div *ngIf="lastname.errors">
+      <span *ngIf="lastname.errors.required">Votre nom est requis !</span>
+      <span *ngIf="lastname.errors.minlength"
+        >La longueur minimale doit être supérieure à 3</span
+      >
+      <span *ngIf="lastname.errors?.maxlength"
+        >La longueur maximale doit être inférieure à 15</span
+      >
+    </div>
+    <div class="inscription-form-email">
+      <label for="email">Email:</label>
+      <input
+        name="email"
+        type="email"
+        [(ngModel)]="model.email"
+        #email="ngModel"
+        required
+        email
+      />
+    </div>
+    <!--Message d'erreurs-->
+    <div *ngIf="email.errors">
+      <span *ngIf="email.errors.required">Le champ email est requis</span>
+      <span *ngIf="email.errors.email">L'email invalide</span>
+    </div>
+    <div class="inscription-form-password">
+      <label for="password">Password:</label>
+      <input
+        name="password"
+        type="password"
+        [(ngModel)]="model.password"
+        #password="ngModel"
+        required
+      />
+    </div>
+    <!--Message d'erreurs-->
+    <div *ngIf="password.errors">
+      <span *ngIf="password.errors.required">Un mot de passe est requis</span>
+      <span *ngIf="password.errors.minlength">La longueur doit être supérieur à 3</span>
+    </div>
+    <br />
+    <button type="submit">Submit</button>
+  </form>
+</div>
